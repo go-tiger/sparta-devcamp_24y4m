@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
+import { User } from 'src/auth/entities/user.entity';
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { AuthModule } from 'src/auth/auth.module';
             useFactory: (configService: ConfigService) => ({
                 type: 'postgres',
                 url: configService.get<string>('DB_URL'),
+                entities: [User],
                 synchronize: true,
                 logging: true,
             }),
