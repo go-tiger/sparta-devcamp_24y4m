@@ -20,7 +20,6 @@ export class AuthService {
         }
 
         user.password = await argon2.hash(user.password);
-        console.log('🚀  user:', user);
 
         return this.userRepository.save(user);
     }
